@@ -39,7 +39,7 @@ Same entry in each agent (replace `<user>`):
 | --- | --- |
 | Claude Code | `~/.claude.json`, or run `claude mcp add garmin --scope user -- "$env:USERPROFILE\.local\bin\garmin-mcp.exe"` |
 | Claude Desktop | `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\claude_desktop_config.json` |
-| omp | `~/.omp/agent/mcp.json`, add `"type": "stdio"` (omp does not read `~/.claude.json`) |
+| omp | `~/.omp/agent/mcp.json`, add `"type": "stdio"` and `"enabled": false` (omp does not read `~/.claude.json`). Off by default so its ~150 tools stay out of every prompt; `/mcp enable garmin` when needed, `/mcp disable garmin` after |
 
 Restart each agent; quit Claude Desktop from the system tray.
 
