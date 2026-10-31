@@ -40,7 +40,7 @@ const raw = fs.readFileSync(CFG, 'utf8');
 const cfg = JSON.parse(raw);
 
 if (!cfg.mcpServers || !cfg.mcpServers.garmin) {
-  die('no "garmin" server found in ~/.claude.json — was it renamed or removed?');
+  die('no "garmin" server found in ~/.claude.json. Was it renamed or removed?');
 }
 
 const mode = toggles.mode || 'full';
@@ -68,7 +68,7 @@ for (const [mod, entry] of Object.entries(toggles.categories || {})) {
 }
 
 if (!enabled.length && !disabled.length) die('garmin-tools.json lists no tools');
-if (!enabled.length) die('every tool would end up disabled — that would leave the server with nothing to do');
+if (!enabled.length) die('every tool would end up disabled, which would leave the server with nothing to do');
 
 const server = cfg.mcpServers.garmin;
 const before = (server.env && server.env.GARMIN_DISABLED_TOOLS) || '';
@@ -99,23 +99,23 @@ if (activeWrites.length) {
   console.log(`\n${activeWrites.length} enabled tool(s) can modify your Garmin account:`);
   console.log('  ' + activeWrites.sort().join(', '));
 } else {
-  console.log('\nno write tools enabled — read-only.');
+  console.log('\nno write tools enabled, read-only.');
 }
 
 if (overridden) {
-  console.log(`\nread_only mode overrode "enabled": true on ${overridden} write tool(s) — their own flag is ignored while mode is "read_only".`);
+  console.log(`\nread_only mode overrode "enabled": true on ${overridden} write tool(s). Their own flag is ignored while mode is "read_only".`);
 }
 
 if (statusOnly) process.exit(0);
 
 if (before === after) {
-  console.log('\nno change — ~/.claude.json already matches garmin-tools.json');
+  console.log('\nno change, ~/.claude.json already matches garmin-tools.json');
   process.exit(0);
 }
 
 if (dryRun) {
   console.log('\n--dry-run, nothing written. Would set GARMIN_DISABLED_TOOLS to:');
-  console.log(after || '(empty — all tools enabled)');
+  console.log(after || '(empty, all tools enabled)');
   process.exit(0);
 }
 
