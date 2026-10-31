@@ -1,0 +1,698 @@
+{
+  "_readme": [
+    "mode: \"full\" respects every tool's own enabled flag below.",
+    "mode: \"read_only\" force-disables every \"write\" tool regardless of its enabled flag",
+    "  (read tools still respect their own flag). Fastest way to lock the account down.",
+    "Per-tool: {\"type\": \"read\"|\"write\", \"enabled\": true|false}.",
+    "After editing, run:  node apply-tools.js",
+    "That rewrites ~/.claude.json (backing it up first).",
+    "Fully restart the Claude app afterwards for changes to take effect."
+  ],
+  "mode": "full",
+  "categories": {
+    "activity_analysis": {
+      "_label": "Activity analysis & FIT files",
+      "tools": {
+        "download_activity_file": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_fit_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_fit_messages": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_power_duration_curve": {
+          "type": "read",
+          "enabled": true
+        },
+        "set_fit_download_dir": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "activity_management": {
+      "_label": "Activities",
+      "tools": {
+        "count_activities": {
+          "type": "read",
+          "enabled": true
+        },
+        "create_manual_activity": {
+          "type": "write",
+          "enabled": true
+        },
+        "get_activities": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activities_by_date": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activities_fordate": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_exercise_sets": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_gear": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_hr_in_timezones": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_power_in_timezones": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_split_summaries": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_splits": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_typed_splits": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_types": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_activity_weather": {
+          "type": "read",
+          "enabled": true
+        },
+        "set_activity_description": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_activity_event_type": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_activity_feel": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_activity_name": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_activity_type": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_perceived_effort": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "calendar_events": {
+      "_label": "Calendar events",
+      "tools": {
+        "get_calendar_events": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "challenges": {
+      "_label": "Challenges, badges & records",
+      "tools": {
+        "get_adhoc_challenges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_available_badge_challenges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_badge_challenges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_earned_badges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_goals": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_inprogress_virtual_challenges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_non_completed_badge_challenges": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_personal_record": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_race_predictions": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "courses": {
+      "_label": "Courses",
+      "tools": {
+        "delete_course": {
+          "type": "write",
+          "enabled": true
+        },
+        "download_course_gpx": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_course_details": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_courses": {
+          "type": "read",
+          "enabled": true
+        },
+        "upload_course": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "data_management": {
+      "_label": "Manual data entry",
+      "tools": {
+        "add_body_composition": {
+          "type": "write",
+          "enabled": true
+        },
+        "add_hydration_data": {
+          "type": "write",
+          "enabled": true
+        },
+        "set_blood_pressure": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "devices": {
+      "_label": "Devices",
+      "tools": {
+        "get_device_alarms": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_device_last_used": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_device_settings": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_device_solar_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_devices": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_primary_training_device": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "gear_management": {
+      "_label": "Gear",
+      "tools": {
+        "add_gear_to_activity": {
+          "type": "write",
+          "enabled": true
+        },
+        "get_gear": {
+          "type": "read",
+          "enabled": true
+        },
+        "remove_gear_from_activity": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "health_wellness": {
+      "_label": "Health & wellness",
+      "tools": {
+        "get_all_day_events": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_all_day_stress": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_blood_pressure": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_body_battery": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_body_battery_events": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_body_composition": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_daily_steps": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_energy_balance": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_floors": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_heart_rates": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_heart_rates_summary": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_hydration_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_lifestyle_logging_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_morning_training_readiness": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_respiration_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_respiration_summary": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_rhr_day": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_sleep_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_sleep_summary": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_sleep_summary_range": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_spo2_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_stats": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_stats_and_body": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_stats_range": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_steps_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_stress_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_stress_summary": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_readiness": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_user_summary": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_weekly_intensity_minutes": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_weekly_steps": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_weekly_stress": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "nutrition": {
+      "_label": "Nutrition",
+      "tools": {
+        "create_custom_food": {
+          "type": "write",
+          "enabled": true
+        },
+        "delete_custom_food": {
+          "type": "write",
+          "enabled": true
+        },
+        "delete_food_log": {
+          "type": "write",
+          "enabled": true
+        },
+        "get_custom_food_serving_units": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_custom_foods": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_nutrition_daily_food_log": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_nutrition_daily_meals": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_nutrition_daily_settings": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_nutrition_summary_between_dates": {
+          "type": "read",
+          "enabled": true
+        },
+        "log_custom_food": {
+          "type": "write",
+          "enabled": true
+        },
+        "log_food": {
+          "type": "write",
+          "enabled": true
+        },
+        "search_foods": {
+          "type": "read",
+          "enabled": true
+        },
+        "set_nutrition_daily_settings": {
+          "type": "write",
+          "enabled": true
+        },
+        "update_custom_food": {
+          "type": "write",
+          "enabled": true
+        },
+        "upsert_and_log": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "training": {
+      "_label": "Training & performance",
+      "tools": {
+        "get_acclimation": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_cycling_ftp": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_endurance_score": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_fitnessage_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_hill_score": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_hrv_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_hrv_trend": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_lactate_threshold": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_progress_summary_between_dates": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_respiration_trend": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_running_tolerance": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_running_tolerance_trend": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_effect": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_load_balance": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_load_trend": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_status": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_vo2max_trend": {
+          "type": "read",
+          "enabled": true
+        },
+        "request_reload": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "user_profile": {
+      "_label": "User profile",
+      "tools": {
+        "get_full_name": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_heart_rate_zones": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_unit_system": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_user_profile": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_userprofile_settings": {
+          "type": "read",
+          "enabled": true
+        },
+        "set_heart_rate_zones": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "weight_management": {
+      "_label": "Weight tracking",
+      "tools": {
+        "add_weigh_in": {
+          "type": "write",
+          "enabled": true
+        },
+        "add_weigh_in_with_timestamps": {
+          "type": "write",
+          "enabled": true
+        },
+        "delete_weigh_ins": {
+          "type": "write",
+          "enabled": true
+        },
+        "get_daily_weigh_ins": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_weigh_ins": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "womens_health": {
+      "_label": "Women's health",
+      "tools": {
+        "get_menstrual_calendar_data": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_menstrual_data_for_date": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_pregnancy_summary": {
+          "type": "read",
+          "enabled": true
+        }
+      }
+    },
+    "workout_builders": {
+      "_label": "Workout builders",
+      "tools": {
+        "create_run_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "create_strength_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "create_walk_run_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "create_z2_walk_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "schedule_week": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    },
+    "workouts": {
+      "_label": "Workouts",
+      "tools": {
+        "delete_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "delete_workouts": {
+          "type": "write",
+          "enabled": true
+        },
+        "download_workout": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_garmin_coach_workouts": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_scheduled_workouts": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_training_plan_workouts": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_workout_by_id": {
+          "type": "read",
+          "enabled": true
+        },
+        "get_workouts": {
+          "type": "read",
+          "enabled": true
+        },
+        "schedule_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "schedule_workouts": {
+          "type": "write",
+          "enabled": true
+        },
+        "unschedule_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "unschedule_workouts": {
+          "type": "write",
+          "enabled": true
+        },
+        "upload_workout": {
+          "type": "write",
+          "enabled": true
+        },
+        "upload_workouts": {
+          "type": "write",
+          "enabled": true
+        }
+      }
+    }
+  }
+}
