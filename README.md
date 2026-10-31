@@ -69,11 +69,14 @@ After an update, compare the server's tool list with `garmin-tools.json` and add
 |`garmin-weekly-report`|7-day health and activity report as markdown tables. Runs only when asked explicitly (e.g. `/garmin-report`).|
 |`garmin-report-analysis`|4-week trend analysis of that report, plus metric definitions looked up on Garmin Technology pages. Needs the weekly report first.|
 
-- Claude Code / omp: copy each folder to `~/.claude/skills/`:
+- Claude Code (`~/.claude/skills`) and omp (`~/.agents/skills`; omp ignores `~/.claude/skills` while `skills.enableClaudeUser` is off): link each folder from this repo, so `git pull` updates both. Run in this folder:
   ```powershell
-  Copy-Item -Recurse skills\* "$env:USERPROFILE\.claude\skills\"
+  foreach ($d in "$env:USERPROFILE\.claude\skills", "$env:USERPROFILE\.agents\skills") {
+    Get-ChildItem skills -Directory | ForEach-Object { New-Item -ItemType Junction -Path "$d\$($_.Name)" -Target $_.FullName }
+  }
   ```
-- Claude Desktop: zip each folder and upload it under Settings → Capabilities → Skills.
+  Links break if this folder moves. In omp, run `/mcp enable garmin` first (off by default, see step 4).
+- Claude Desktop: zip each folder and upload it under Settings → Capabilities → Skills. Uploads sync to the account, not to this repo: re-upload after changing a skill.
 
 ## Maintenance
 
