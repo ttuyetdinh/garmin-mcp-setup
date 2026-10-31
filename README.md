@@ -60,6 +60,21 @@ After an update, compare the server's tool list with `garmin-tools.json` and add
 
 `claude mcp list` → `garmin ... √ Connected`.
 
+## 7. Skills (optional)
+
+`skills/` holds two Claude skills built on these tools (Vietnamese prompts; output follows the user's language):
+
+|Skill|Use|
+|---|---|
+|`garmin-weekly-report`|7-day health and activity report as markdown tables. Runs only when asked explicitly (e.g. `/garmin-report`).|
+|`garmin-report-analysis`|4-week trend analysis of that report, plus metric definitions looked up on Garmin Technology pages. Needs the weekly report first.|
+
+- Claude Code / omp: copy each folder to `~/.claude/skills/`:
+  ```powershell
+  Copy-Item -Recurse skills\* "$env:USERPROFILE\.claude\skills\"
+  ```
+- Claude Desktop: zip each folder and upload it under Settings → Capabilities → Skills.
+
 ## Maintenance
 
 - **Update:** rerun step 2 with a new full SHA and `--force`; registrations unchanged; restart agents.
