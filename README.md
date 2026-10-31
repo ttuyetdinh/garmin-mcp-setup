@@ -69,14 +69,15 @@ After an update, compare the server's tool list with `garmin-tools.json` and add
 |`garmin-weekly-report`|7-day health and activity report as markdown tables. Runs only when asked explicitly (e.g. `/garmin-report`).|
 |`garmin-report-analysis`|4-week trend analysis of that report, plus metric definitions looked up on Garmin Technology pages. Needs the weekly report first.|
 
-- Claude Code: copy each folder to `~/.claude/skills`. omp (reads `~/.agents/skills`, not `~/.claude/skills`): link each one there to the Claude copy. Run in this folder:
+- Claude Code / omp: clone this repo to `~/.agents` (same layout as superpowers), then link each skill into `~/.agents/skills` (omp) and `~/.claude/skills` (Claude Code). omp ignores `~/.claude/skills` while `skills.enableClaudeUser` is off.
   ```powershell
-  Copy-Item -Recurse -Force skills\* "$env:USERPROFILE\.claude\skills\"
-  Get-ChildItem skills -Directory | ForEach-Object {
-    New-Item -ItemType Junction -Path "$env:USERPROFILE\.agents\skills\$($_.Name)" -Target "$env:USERPROFILE\.claude\skills\$($_.Name)"
+  $repo = "$env:USERPROFILE\.agents\garmin-mcp-setup"
+  git clone https://github.com/ttuyetdinh/garmin-mcp-setup.git $repo
+  foreach ($d in "$env:USERPROFILE\.agents\skills", "$env:USERPROFILE\.claude\skills") {
+    Get-ChildItem "$repo\skills" -Directory | ForEach-Object { New-Item -ItemType Junction -Path "$d\$($_.Name)" -Target $_.FullName }
   }
   ```
-  After changing a skill here, rerun only the `Copy-Item` line; omp follows the link. In omp, run `/mcp enable garmin` first (off by default, see step 4).
+  Update: `git -C "$env:USERPROFILE\.agents\garmin-mcp-setup" pull`. In omp, run `/mcp enable garmin` first (off by default, see step 4).
 - Claude Desktop: zip each folder and upload it under Settings → Capabilities → Skills. Uploads sync to the account, not to this repo: re-upload after changing a skill.
 
 ## Maintenance
