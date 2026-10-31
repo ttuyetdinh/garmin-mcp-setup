@@ -1,4 +1,4 @@
-# Garmin MCP — setup guide (Windows)
+# Garmin MCP setup guide (Windows)
 
 Server: [Taxuspt/garmin_mcp](https://github.com/Taxuspt/garmin_mcp), pinned to commit
 `655efb8f5639602f661c26164282d0ddd4f5d3db`. One install, shared by Claude Code, Claude Desktop and omp.
@@ -37,7 +37,7 @@ Same entry in each agent (replace `<user>`):
 
 | Agent | Config (`mcpServers`) |
 | --- | --- |
-| Claude Code | `~/.claude.json` — or `claude mcp add garmin --scope user -- "$env:USERPROFILE\.local\bin\garmin-mcp.exe"` |
+| Claude Code | `~/.claude.json`, or run `claude mcp add garmin --scope user -- "$env:USERPROFILE\.local\bin\garmin-mcp.exe"` |
 | Claude Desktop | `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude\claude_desktop_config.json` |
 | omp | `~/.omp/agent/mcp.json`, add `"type": "stdio"` (omp does not read `~/.claude.json`) |
 
