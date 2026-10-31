@@ -62,7 +62,7 @@ After an update, compare the server's tool list with `garmin-tools.json` and add
 
 ## 7. Skills (optional)
 
-`skills/` holds two Claude skills built on these tools (Vietnamese prompts; output follows the user's language):
+`skills/` holds two Claude skills built on these tools (English prompts; output follows the user's language):
 
 |Skill|Use|
 |---|---|
